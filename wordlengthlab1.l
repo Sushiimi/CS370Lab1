@@ -9,9 +9,19 @@
         Shaun Cooper
         January 2015
    */
+   
+    /* 
+        Lex routine edited by Ian Johnson -- 1-19-2018
+    */
 	int lgths[100];
+	int countnums = 0;
+    /* 
+        added a second rule to count numbers from the given input
+        added 1-19-2018 by Ian Johnson
+    */
 %%
 [a-zA-Z]+	lgths[yyleng]++;
+[0-9]+	    countnums++;
 .	|
 \n	;
 %%
@@ -24,6 +34,12 @@ yywrap()
 			printf("%5d%10d\n",i,lgths[i]);
 		}
 	}
+	/* 
+	   additional print statements added to display the 
+	   number count - added 1-19-2018 by Ian Johnson
+    */
+	printf("Number Count\n");
+	printf("%7d\n", countnums++);
 	return(1);
 }
 
